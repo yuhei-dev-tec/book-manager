@@ -85,7 +85,7 @@ Spring Bootを使用して開発した書籍管理アプリケーションです
 
  
 
-images/book-list.png
+"images/book-list.png
 
  
 
