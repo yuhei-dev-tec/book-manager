@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
+<head>
+    <title>トップページ　｜　読書管理アプリケーション</title>
+</head>
+<body>
+<h1 class="mt-3">読書管理アプリケーション</h1>
+<ul>
+    <li>
+        <a href="./issues/list.html" th:href="@{/issues}">書籍一覧へ</a>
+    </li>
+</ul>
+</body>
+</html>

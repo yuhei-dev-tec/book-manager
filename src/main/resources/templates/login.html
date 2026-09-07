@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ログイン　｜　書籍管理アプリケーション</title>
+</head>
+<body>
+<h2>書籍管理アプリケーション　ログイン</h2>
+<div th:if="${param.error}" style="color: #dc3545">
+    メールアドレスまたはパスワードが正しくありません。
+</div>
+<div th:if="${param.logout}" style="color: forestgreen">
+    ログアウトしました。
+</div>
+<form th:action="@{/login}" method="post">
+    <div>
+        <label for="username">メールアドレス</label>
+        <input type="email" id="username" name="username" required />
+    </div>
+    <div>
+        <label for="password">パスワード</label>
+        <input type="password" id="password" name="password" required />
+    </div>
+    <button type="submit">ログイン</button>
+</form>
+
+<br>
+<a th:href="@{/signup}">会員登録はこちらから</a>
+</body>
+</html>
