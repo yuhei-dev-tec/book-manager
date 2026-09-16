@@ -48,14 +48,14 @@
                         </div>
 
                         <div th:if="${rakutenBook.itemUrl != null}">
-                            <a th:href="${rakutenBook.itemUrl}" target="_blank" rel="noopener noreferrer"
+                            <a th:href="@{rakutenBook.itemUrl}" target="_blank" rel="noopener noreferrer"
                                class="btn btn-outline-danger btn-sm">
                                 楽天ブックスで見る↗
                             </a>
                         </div>
                     </div>
 
-                    <div th:if="@{rakutenBook == null}" class="alert alert-light border mt-3 small text-muted">
+                    <div th:if="${rakutenBook == null}" class="alert alert-light border mt-3 small text-muted">
                         ※楽天ブックスに詳細情報が見つかりませんでした
                     </div>
                 </div>
