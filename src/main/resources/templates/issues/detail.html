@@ -5,18 +5,63 @@
     <title>書籍情報　｜　読書管理アプリケーション</title>
 </head>
 <body>
-<h1 class="mt-3">書籍情報</h1>
-<a href="./list.html" th:href="@{/issues}">一覧に戻る</a>
-<div>
-    <h2 th:text="${issue.bookTitle}">(bookTitle)</h2>
-    <p th:text="${issue.authorName}">(authorName)</p>
-    <p>
-        <span th:if="${issue.rating > 0}"
-              th:each="i : ${#numbers.sequence(1, issue.rating)}"
-              style="color: #ffca28;">★</span><span th:if="${issue.rating < 5 }"
-                                                    th:each="i : ${#numbers.sequence(1, 5 - issue.rating)}"
-                                                    style="color: #cccccc;">★</span>
-    </p>
+<div class="container mt-4">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+        <h1>書籍情報</h1>
+        <a href="./list.html" th:href="@{/issues}">一覧に戻る</a>
+    </div>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="row g-4">
+                <div class="col-md-4 text-center" th:if="${rakutenBook != null and rakutenBook.largeImageUrl != null}">
+                    <img th:src="${rakutenBook.largeImageUrl}" class="img-fruid rounded border" alt="書影"
+                         style="max-height: 350px; object-fit: contain;">
+                </div>
+                <div th:class="${rakutenBook != null and rakutenBook.largeImageUrl != null} ? 'col-mid-8' : 'col-12'">
+                    <h2 class="card-title h3 mb-2" th:text="${issue.bookTitle}">(bookTitle)</h2>
+                    <p class="text-muted fs-5 mb-3" th:text="${issue.authorName}">(authorName)</p>
+
+                    <div class="mb-4">
+                        <span class="fw-bold me-2">自分の評価</span>
+                        <span th:if="${issue.rating != null}">
+                            <span th:each="i : ${#numbers.sequence(1, issue.rating)}"
+                                  style="color: #ffca28;">★</span>
+                            <span th:if="${issue.rating < 5 }"
+                                  th:each="i : ${#numbers.sequence(1, 5 - issue.rating)}"
+                                  style="color: #cccccc;">★</span>
+                        </span>
+                    </div>
+                    <div th:if="${rakutenBook != null}" class="border-top pt-3 mt-3">
+                        <span class="badge bg-danger mb-2">楽天ブックス情報</span>
+
+                        <div class="row mb-2" th:if="${rakutenBook.itemPrice != null}">
+                            <div class="col-sm-4 text-muted">価格</div>
+                            <div class="col-sm-8 fw-bold" th:text="${#numbers.formatInteger(rakutenBook?.itemPrice, 1, 'COMMA')} + ' 円'">1,500円</div>
+                        </div>
+                        <div class="row mb-2" th:if="${rakutenBook.publisherName != null}">
+                            <div class="col-sm-4 text-muted">出版社</div>
+                            <div class="col-sm-8" th:text="${rakutenBook.publisherName}">出版社名</div>
+                        </div>
+                        <div class="row mb-2" th:if="${rakutenBook.itemCaption != null}">
+                            <div class="col-sm-4 text-muted">あらすじ</div>
+                            <div class="col-sm-8 text-secondary small" th:text="${rakutenBook.itemCaption}">あらすじのテキスト</div>
+                        </div>
+
+                        <div th:if="${rakutenBook.itemUrl != null}">
+                            <a th:href="${rakutenBook.itemUrl}" target="_blank" rel="noopener noreferrer"
+                               class="btn btn-outline-danger btn-sm">
+                                楽天ブックスで見る↗
+                            </a>
+                        </div>
+                    </div>
+
+                    <div th:if="@{rakutenBook == null}" class="alert alert-light border mt-3 small text-muted">
+                        ※楽天ブックスに詳細情報が見つかりませんでした
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

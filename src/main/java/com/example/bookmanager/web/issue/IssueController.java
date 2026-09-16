@@ -4,6 +4,8 @@ import com.example.bookmanager.domain.issue.IssueEntity;
 import com.example.bookmanager.domain.issue.IssueService;
 import com.example.bookmanager.domain.user.UserAccount;
 import com.example.bookmanager.domain.user.UserAccountRepository;
+import com.example.bookmanager.web.book.RakutenBookService;
+import com.example.bookmanager.web.dto.RakutenBookDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,6 +25,7 @@ public class IssueController {
 
     private final IssueService issueService;
     private final UserAccountRepository userRepository;
+    private  final RakutenBookService rakutenBookService;
 
     @GetMapping
     public String showList(
@@ -61,8 +64,12 @@ public class IssueController {
     }
 
     @GetMapping("/{issueId}")
-    public String showDetail(@PathVariable("issueId") long issueId, Model model){
-        model.addAttribute("issue", issueService.findById(issueId));
+    public String showDetail(@PathVariable("issueId") Long issueId, Model model){
+        IssueEntity issue = issueService.findById(issueId);
+        model.addAttribute("issue", issue);
+
+        RakutenBookDto.BookItem rakutenBook = rakutenBookService.searchByKeyword(issue.getBookTitle(), issue.getAuthorName());
+        model.addAttribute("rakutenBook", rakutenBook);
         return "issues/detail";
     }
 
