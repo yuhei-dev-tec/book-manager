@@ -8,6 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.net.http.HttpClient;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -19,7 +21,7 @@ public class SecurityConfig {
                         .requestMatchers("/login", "/signup", "/css/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(form -> form
+                .formLogin(login -> login
                         .loginPage("/login")
                         .defaultSuccessUrl("/issues")
                         .permitAll()
@@ -36,5 +38,10 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public HttpClient httpClient(){
+        return HttpClient.newHttpClient();
     }
 }

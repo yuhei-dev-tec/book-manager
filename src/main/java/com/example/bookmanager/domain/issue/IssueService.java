@@ -49,13 +49,5 @@ public class IssueService {
         }
     }
 
-    public List<IssueEntity> findByUser(UserAccount user){
-        return issueRepository.findByUser(user);
-    }
-
-    public void createUser(IssueEntity issue, UserAccount user){
-        issue.setUser(user);
-        issueRepository.save(issue);
-    }
 
 }

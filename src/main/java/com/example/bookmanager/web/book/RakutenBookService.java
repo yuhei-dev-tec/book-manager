@@ -29,11 +29,13 @@ public class RakutenBookService {
     private final ObjectMapper objectMapper;
 
     public RakutenBookService(@Value("${rakuten.api.application-id}") String applicationId,
-                              @Value("${rakuten.api.access-key}") String accessKey) {
+                              @Value("${rakuten.api.access-key}") String accessKey,
+                              HttpClient httpClient,
+                              ObjectMapper objectMapper) {
         this.applicationId = applicationId;
         this.accessKey = accessKey;
-        this.httpClient = HttpClient.newHttpClient();
-        this.objectMapper = new ObjectMapper();
+        this.httpClient = httpClient;
+        this.objectMapper = objectMapper;
     }
 
     public RakutenBookDto.BookItem searchByIsbn(String isbn){

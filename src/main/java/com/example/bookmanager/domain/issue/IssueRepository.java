@@ -15,7 +15,6 @@ public interface IssueRepository extends JpaRepository<IssueEntity, Long>{
 
     List<IssueEntity> findByRating(Integer rating);
 
-    List<IssueEntity> findByUser(UserAccount user);
-    List<IssueEntity> findByUserId(Long userId);
+
 
 }
