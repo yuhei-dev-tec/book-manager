@@ -92,6 +92,7 @@ Windows:
 
 ```bash
 gradlew.bat test
+```
  
 
 ## 画面イメージ(書籍リスト)
