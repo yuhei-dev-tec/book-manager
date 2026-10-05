@@ -84,7 +84,7 @@ Spring Bootを使用して開発した書籍管理アプリケーションです
 
 ## テスト
 
-本プロジェクトでは、JUnitを使用してController、Service、Repositoryなどのテストを実装しています。
+本プロジェクトでは、JUnitを使用してController、Serviceなどのテストを実装しています。
 
 ### テスト実行
 
