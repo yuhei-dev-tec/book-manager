@@ -82,6 +82,16 @@ Spring Bootを使用して開発した書籍管理アプリケーションです
 
 - Rakuten Books API
 
+## テスト
+
+本プロジェクトでは、JUnitを使用してController、Service、Repositoryなどのテストを実装しています。
+
+### テスト実行
+
+Windows:
+
+```bash
+gradlew.bat test
  
 
 ## 画面イメージ(書籍リスト)
